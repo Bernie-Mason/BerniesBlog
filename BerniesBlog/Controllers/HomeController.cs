@@ -13,9 +13,14 @@ namespace BerniesBlog.Controllers
             return View();
         }
 
+        public ActionResult Post()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "A little about me";
 
             return View();
         }
@@ -24,6 +29,26 @@ namespace BerniesBlog.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Food()
+        {
+            return View();
+        }
+
+        public ActionResult Magic()
+        {
+            return View();
+        }
+
+        public ActionResult Languages()
+        {
+            return View();
+        }
+
+        public ActionResult Running()
+        {
             return View();
         }
     }
