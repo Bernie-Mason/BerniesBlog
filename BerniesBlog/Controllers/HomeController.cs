@@ -10,6 +10,14 @@ namespace BerniesBlog.Controllers
     {
         public ActionResult Index()
         {
+            // The information of the route data is available anywhere throughout the request!
+            // The RouteData is a data structure that is used to contain the route data
+            var controller = RouteData.Values["controller"];
+            var action = RouteData.Values["action"];
+            var id = RouteData.Values["id"]; // We don't actually have to look inside route data to get the id
+
+            var message = String.Format("{0}::{1} {2}", controller, action, id);
+            ViewBag.Message = message;
             return View();
         }
 
