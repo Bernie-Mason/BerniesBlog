@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BerniesBlog.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace BerniesBlog.Controllers
 {
     public class HomeController : Controller
     {
+        RestaurantReviewsDB _db = new RestaurantReviewsDB();
+
         public ActionResult Index()
         {
             // The information of the route data is available anywhere throughout the request!
@@ -42,7 +45,9 @@ namespace BerniesBlog.Controllers
 
         public ActionResult Food()
         {
-            return View();
+            var model = _db.Restaurants.ToList();
+
+            return View(model);
         }
 
         public ActionResult Magic()
@@ -58,6 +63,15 @@ namespace BerniesBlog.Controllers
         public ActionResult Running()
         {
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (_db != null)
+            {
+                _db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

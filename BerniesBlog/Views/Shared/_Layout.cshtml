@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@*TODO:
+    1. Fix the collapsed menu button: Doesn't work at all right now.*@
+
+@{
+    ViewBag.Title = "Bernie's Blog";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -6,7 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Bernie's Blog</title>
+    <title>@ViewBag.Title</title>
+    <!-- Site CSS -->
+    <link href="~/Content/Site.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet">
     <!-- Theme CSS -->
@@ -32,34 +41,35 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="~/Home/Index">Blog Home</a>
+                <a class="navbar-brand" href="~/Home">Blog Home</a>
+                @*TODO: Convert the above to an actionlink <a class="navbar-brand">@Html.ActionLink("Bernie's Blog", "Index", "Home")</a>*@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="~/Home/About">About</a>
+                        @Html.ActionLink("About", "About", "Home")
                     </li>
                     <li>
-                        <a href="~/Home/Post">Sample Post</a>
+                        @Html.ActionLink("Sample Post", "Post", "Home")
                     </li>
                     <li>
-                        <a href="~/Home/Contact">Contact</a>
+                        @Html.ActionLink("Contact", "Contact", "Home")
                     </li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-left">
                     <li>
-                        <a href="~/Home/Food">Food</a>
+                        @Html.ActionLink("Food", "Food", "Home")
                     </li>
                     <li>
-                        <a href="~/Home/Magic">Magic</a>
+                        @Html.ActionLink("Magic", "Magic", "Home")
                     </li>
                     <li>
-                        <a href="~/Home/Languages">Languages</a>
+                        @Html.ActionLink("Languages", "Languages", "Home")
                     </li>
                     <li>
-                        <a href="~/Home/Running">Running</a>
+                        @Html.ActionLink("Running", "Running", "Home")
                     </li>
                 </ul>
             </div>
@@ -69,14 +79,15 @@
     </nav>
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url(/Images/Saalbach_skiing_1.jpg)" @*style="background-image: url('~/Images/home-bg.jpg'*@ )">
+    <header class="intro-header" style="background-image: url(/Images/Saalbach_skiing_1.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1 color="#ffffff">Bernie's Blog</h1>
+
+                        <h1 color="#ffffff">@ViewBag.DefaultPageTitle</h1>
                         <hr class="small">
-                        <span class="subheading">A Place For Nonsense</span>
+                        <span class="subheading">@ViewBag.DefaultPageSubTitle</span>
                     </div>
                 </div>
             </div>
@@ -86,6 +97,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
                     @RenderBody()
 
                 </div>
@@ -101,7 +113,7 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <ul class="list-inline text-center">
                         <li>
-                            <a href="#">
+                            <a href = "#" >
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -109,7 +121,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href = "#" >
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -117,7 +129,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href = "#" >
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -131,14 +143,14 @@
         </div>
     </footer>
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
+    <script src = "vendor/jquery/jquery.min.js" ></script >
+    <!--Bootstrap Core JavaScript-->
+    <script src = "vendor/bootstrap/js/bootstrap.min.js" ></script >
+    <!--Contact Form JavaScript -->
+    <script src = "js/jqBootstrapValidation.js" ></script >
     <script src="js/contact_me.js"></script>
     <!-- Theme JavaScript -->
-    <script src="js/clean-blog.min.js"></script>
+    <script src = "js/clean-blog.min.js" ></script >
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)

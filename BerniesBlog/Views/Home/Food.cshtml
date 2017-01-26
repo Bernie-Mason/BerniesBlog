@@ -1,1 +1,15 @@
-﻿
+﻿@model IEnumerable<BerniesBlog.Models.Restaurant>
+@{
+    ViewBag.DefaultPageTitle = "The Food Hall";
+    ViewBag.DefaultPageSubTitle = "Feeling Hungry?";
+}
+
+@Html.ActionLink("Restaurant Reviews", "Index", "Reviews")
+
+@foreach(var restaurant in Model)
+{
+    <h4>@restaurant.Name</h4>
+    <div>@restaurant.City, @restaurant.Country</div>
+    <hr/>
+
+}
