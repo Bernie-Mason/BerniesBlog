@@ -9,7 +9,6 @@ namespace BerniesBlog.Controllers
 {
     public class HomeController : Controller
     {
-        RestaurantReviewsDB _db = new RestaurantReviewsDB();
 
         public ActionResult Index()
         {
@@ -43,12 +42,23 @@ namespace BerniesBlog.Controllers
             return View();
         }
 
-        public ActionResult Food()
-        {
-            var model = _db.Restaurants.ToList();
+        //public ActionResult Food(string searchTerm = null) // This default parameter of null is slightly redundant as by default the runtime will pass a null if nothing is found
+        //{
+        //    var model =
+        //        _db.Restaurants
+        //           .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
+        //           .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
+        //           .Select(r => new RestaurantListViewModel
+        //                   {
+        //                       Id = r.Id,
+        //                       Name = r.Name,
+        //                       City = r.City,
+        //                       Country = r.Country,
+        //                       NumberOfReviews = r.Reviews.Count()
+        //                   });
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         public ActionResult Magic()
         {
@@ -65,13 +75,13 @@ namespace BerniesBlog.Controllers
             return View();
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (_db != null)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (_db != null)
+        //    {
+        //        _db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

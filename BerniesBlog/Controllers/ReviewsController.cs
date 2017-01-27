@@ -1,130 +1,68 @@
-﻿//using BerniesBlog.Models;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using System.Web.Mvc;
+﻿using BerniesBlog.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
-//namespace BerniesBlog.Controllers
-//{
-//    public class ReviewsController : Controller
-//    {
-        
-//        // GET: Reviews
-//        public ActionResult Index()
-//        {
-//            var model = _db.Reviews.ToList();
+namespace BerniesBlog.Controllers
+{
+    public class ReviewsController : Controller
+    {
+        RestaurantReviewsDB _db = new RestaurantReviewsDB();
+        // GET: Reviews
+        public ActionResult Index([Bind(Prefix="id")] int restaurantId) // Bind allows us to tell the MVC model binder that when it goes to look for the restaurant id parameter value, look for something called id
+        {
+            var restaurant = _db.Restaurants.Find(restaurantId);
+            if( restaurant != null)
+            {
+                return View(restaurant);
+            }
+            return HttpNotFound();
+        }
+        [HttpGet]
+        public ActionResult Create(int restaurantId)
+        {
+            return View();
+        }
 
-//            return View(model);
-//        }
+        [HttpPost]
+        public ActionResult Create(RestaurantReviews review)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Reviews.Add(review); // Tells the entity framework to add the review to the reviews collection. This doesn't save to the database
+                _db.SaveChanges(); // At this point Insert, Update or Delete statements are used to make changes in the database
+                return RedirectToAction("Index", new { id = review.RestaurantId }); // If it works then the user is redirected to the index action
+            }
+            return View(review);
+        }
 
-//        // GET: Reviews/Details/5
-//        public ActionResult Details(int id)
-//        {
-//            return View();
-//        }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var model = _db.Reviews.Find(id);
+            return View(model);
+        }
 
-//        // GET: Reviews/Create
-//        public ActionResult Create()
-//        {
-//            return View();
-//        }
+        [HttpPost]
+        public ActionResult Edit(RestaurantReviews review)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Entry(review).State = EntityState.Modified; // Slightly different API to the one in create. The Entry API is a way to tell the Entity database that 'here is a review that I want you to start tracking so that you can make changes in the database for this review
+                _db.SaveChanges(); // At this point Insert, Update or Delete statements are used to make changes in the database
+                return RedirectToAction("Index", new { id = review.RestaurantId }); // If it works then the user is redirected to the index action
+            }
+            return View(review);
+        }
 
-//        // POST: Reviews/Create
-//        [HttpPost]
-//        public ActionResult Create(FormCollection collection)
-//        {
-//            try
-//            {
-//                // TODO: Add insert logic here
+        protected override void Dispose(bool disposing)
+        {
+            _db.Dispose();
+            base.Dispose(disposing);
+        }
 
-//                return RedirectToAction("Index");
-//            }
-//            catch
-//            {
-//                return View();
-//            }
-//        }
-
-//        // GET: Reviews/Edit/5
-//        public ActionResult Edit(int id)
-//        {
-//            var review = _reviews.Single(r => r.Id == id);
-
-//            return View(review);
-//        }
-
-//        // POST: Reviews/Edit/5
-//        [HttpPost]
-//        public ActionResult Edit(int id, FormCollection collection)
-//        {
-//            var review = _reviews.Single(r => r.Id == id);
-//            if (TryUpdateModel(review))
-//            {
-//                return RedirectToAction("Index"); // After the data has been posted it is common to redirect the user back to original page
-//            }
-//            return View(review);
-//        }
-
-//        // GET: Reviews/Delete/5
-//        public ActionResult Delete(int id)
-//        {
-//            return View();
-//        }
-
-//        // POST: Reviews/Delete/5
-//        [HttpPost]
-//        public ActionResult Delete(int id, FormCollection collection)
-//        {
-//            try
-//            {
-//                // TODO: Add delete logic here
-
-//                return RedirectToAction("Index");
-//            }
-//            catch
-//            {
-//                return View();
-//            }
-//        }
-
-//        // In memory data so we don't have to focus on data access yet:
-//        // We wouldn't normally do this obviously...
-//        static List<RestaurantReviews> _reviews = new List<RestaurantReviews>
-//        {
-//            new RestaurantReviews
-//            {
-//                Id = 1,
-//                Name = "WokyKo",
-//                City = "Bristol",
-//                Country = "UK",
-//                Rating = 8,
-//            },
-//            new RestaurantReviews
-//            {
-//                Id = 2,
-//                Name = "Mountain Sun",
-//                City = "Boulder",
-//                Country = "US",
-//                Rating = 7,
-//            },
-//            new RestaurantReviews
-//            {
-//                Id = 3,
-//                Name = "Stieglbrau",
-//                City = "Salzburg",
-//                Country = "Austria",
-//                Rating = 9,
-//            },
-//            new RestaurantReviews
-//            {
-//                Id = 4,
-//                Name = "Ferdinands",
-//                City = "Prague",
-//                Country = "Czech Republic",
-//                Rating = 8,
-//            },
-
-//        };
-//    }
-//}
+    }
+}

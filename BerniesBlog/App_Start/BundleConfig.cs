@@ -25,7 +25,10 @@ namespace BerniesBlog
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/clean-blog.css",
+                      "~/Content/font-awesome.css"
+                      ));
         }
     }
 }

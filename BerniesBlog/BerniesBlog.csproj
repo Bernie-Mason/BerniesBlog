@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Filters\LogAttribute.cs" />
     <Compile Include="Filters\MyPropertyActionFilter..cs" />
@@ -207,6 +208,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BlogPost.cs" />
+    <Compile Include="Models\RestaurantListViewModel.cs" />
     <Compile Include="Models\RestaurantReviewsDB.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\RestaurantReviews.cs" />
@@ -246,8 +248,6 @@
     <Content Include="Scripts\clean-blog.js" />
     <Content Include="Scripts\clean-blog.min.js" />
     <Content Include="Scripts\contact_me.js" />
-    <Content Include="Scripts\font-awesome.css" />
-    <Content Include="Scripts\font-awesome.min.css" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -279,10 +279,16 @@
     <Content Include="Views\Home\Running.cshtml" />
     <Content Include="Views\Home\Languages.cshtml" />
     <Content Include="Views\Home\Magic.cshtml" />
-    <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Home\Food.cshtml" />
-    <Content Include="Views\Reviews\Edit.cshtml" />
     <Content Include="Views\Shared\_Review.cshtml" />
+    <Content Include="Views\Restaurants\Create.cshtml" />
+    <Content Include="Views\Restaurants\Delete.cshtml" />
+    <Content Include="Views\Restaurants\Edit.cshtml" />
+    <Content Include="Views\Restaurants\Index.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Reviews\_Reviews.cshtml" />
+    <Content Include="Views\Reviews\Create.cshtml" />
+    <Content Include="Views\Reviews\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

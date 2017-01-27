@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BerniesBlog.Models.Restaurant>
+﻿@model IEnumerable<BerniesBlog.Models.RestaurantListViewModel>
 @{
     ViewBag.DefaultPageTitle = "The Food Hall";
     ViewBag.DefaultPageSubTitle = "Feeling Hungry?";
@@ -6,10 +6,16 @@
 
 @Html.ActionLink("Restaurant Reviews", "Index", "Reviews")
 
+<form method="get">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search By Name"/>
+</form>
+
 @foreach(var restaurant in Model)
 {
     <h4>@restaurant.Name</h4>
     <div>@restaurant.City, @restaurant.Country</div>
+    <p>Number of reviews: @restaurant.NumberOfReviews</p>
     <hr/>
 
 }
