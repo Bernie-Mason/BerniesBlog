@@ -15,21 +15,30 @@ namespace BerniesBlog.Controllers
         private RestaurantReviewsDB db = new RestaurantReviewsDB();
 
         // GET: Restaurants
-        // GET: Restaurants
         public ActionResult Index(string searchTerm = null)
         {
-            var model =
-                db.Restaurants
-                   .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
-                   .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
-                   .Select(r => new RestaurantListViewModel
-                   {
-                       Id = r.Id,
-                       Name = r.Name,
-                       City = r.City,
-                       Country = r.Country,
-                       NumberOfReviews = r.Reviews.Count()
-                   });
+            //var model = from r in db.Restaurants
+            //            orderby r.Reviews.Average(review => review.Rating) descending
+            //            select new RestaurantListViewModel
+            //            {
+            //                Id = r.Id,
+            //                Name = r.Name,
+            //                City = r.City,
+            //                Country = r.Country,
+            //                NumberOfReviews = r.Reviews.Count()
+            //            };
+
+            var model = db.Restaurants
+                            .OrderByDescending(r => r.Reviews.Average(reviews => reviews.Rating))
+                            .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
+                            .Select(r => new RestaurantListViewModel
+                            {
+                                Id = r.Id,
+                                Name = r.Name,
+                                City = r.City,
+                                Country = r.Country,
+                                NumberOfReviews = r.Reviews.Count()
+                            });
 
             return View(model);
         }
@@ -139,3 +148,6 @@ namespace BerniesBlog.Controllers
         }
     }
 }
+
+
+

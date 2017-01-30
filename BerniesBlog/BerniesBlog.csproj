@@ -193,6 +193,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CSharpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
@@ -233,6 +234,7 @@
     <Content Include="Images\post-bg.jpg" />
     <Content Include="Images\post-sample-image.jpg" />
     <Content Include="Images\Saalbach_skiing_1.jpg" />
+    <Content Include="Scripts\berniesblog.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -289,6 +291,9 @@
     <Content Include="Views\Reviews\_Reviews.cshtml" />
     <Content Include="Views\Reviews\Create.cshtml" />
     <Content Include="Views\Reviews\Edit.cshtml" />
+    <Content Include="Views\Restaurants\_Restaurants.cshtml" />
+    <Content Include="Views\CSharp\Index.cshtml" />
+    <Content Include="Views\CSharp\ObjectOriented.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

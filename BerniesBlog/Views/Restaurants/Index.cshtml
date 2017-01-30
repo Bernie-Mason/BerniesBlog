@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BerniesBlog.Models.Restaurant>
+﻿@model IEnumerable<BerniesBlog.Models.RestaurantListViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -6,49 +6,24 @@
 
 <h2>Restaurants</h2>
 
-<form method="get">
+@*@using (Ajax.BeginForm(new AjaxOptions
+{
+    HttpMethod = "get",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "restaurantList"
+}))
+{
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search By Name" />
+}*@
+
+<form method="get" action="@Url.Action("index")" data-berniesblog-ajax="true" data-berniesblog-target="#restaurantlist">
     <input type="search" name="searchTerm" />
     <input type="submit" value="Search By Name" />
 </form>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th></th>
-    </tr>
+@Html.Partial("_Restaurants", Model)
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Reviews", "Index", "Reviews", new { id=item.Id }, null) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
 @*@model IEnumerable<BerniesBlog.Models.RestaurantListViewModel>
 @{
