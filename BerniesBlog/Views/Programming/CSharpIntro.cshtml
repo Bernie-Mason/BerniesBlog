@@ -1,4 +1,9 @@
 ﻿
+@{
+    ViewBag.DefaultPageTitle = "Programming";
+    ViewBag.DefaultPageSubTitle = "Yep";
+}
+
 
 <h2>Introduction to C#</h2>
 
@@ -12,10 +17,4 @@
     <li><strong>Generic:</strong> The types of algorithms can be declared but remain uninstantiated until they are need to be instantiated</li>
 </ul>
 
-
-
-
-
-@*<p>Part 1: Introduction to Microsoft Visual C# and MS Visual studio: An introduction to the core syntax of the C# language and the Visual Studio programming environment</p>
-    <p>Part 2: Understanding the C# object model: Goes i</p>*@
-
+@Html.Partial("_CSharpLinks")

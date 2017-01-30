@@ -10,3 +10,4 @@
     };
     $("form[data-berniesblog-ajax='true]").submit(ajaxFormSubmit);
 });
+

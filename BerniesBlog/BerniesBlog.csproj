@@ -292,8 +292,11 @@
     <Content Include="Views\Reviews\Create.cshtml" />
     <Content Include="Views\Reviews\Edit.cshtml" />
     <Content Include="Views\Restaurants\_Restaurants.cshtml" />
-    <Content Include="Views\CSharp\Index.cshtml" />
-    <Content Include="Views\CSharp\ObjectOriented.cshtml" />
+    <Content Include="Views\Programming\Index.cshtml" />
+    <Content Include="Views\Programming\ObjectOriented.cshtml" />
+    <Content Include="Views\Programming\CSharpIntro.cshtml" />
+    <Content Include="Views\Programming\JavaScriptIntro.cshtml" />
+    <Content Include="Views\Programming\_CSharpLinks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

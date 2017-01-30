@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace BerniesBlog.Controllers
 {
-    public class CSharpController : Controller
+    public class ProgrammingController : Controller
     {
         // GET: CSharp
         public ActionResult Index()
@@ -14,8 +14,17 @@ namespace BerniesBlog.Controllers
             return View();
         }
 
-        // GET: CSharp
         public ActionResult ObjectOriented()
+        {
+            return View();
+        }
+
+        public ActionResult CSharpIntro()
+        {
+            return View();
+        }
+
+        public ActionResult JavaScriptIntro()
         {
             return View();
         }

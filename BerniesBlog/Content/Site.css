@@ -38,3 +38,28 @@ textarea {
 .review p {
     font-size: .8em;
 }
+a.BBLink {
+    color: #000000;
+    text-decoration:none;
+}
+
+/*a.BBLink:link, a.BBLink:hover {
+    color: #ff0000;
+    text-decoration:none;
+}
+
+a.BBLink:visited, a.BBLink:active {
+    color: #ff0000;
+    text-decoration:none;
+}*/
+
+div.containerBB {
+    width: 100%;
+    height: 48px;
+    text-align: center;
+    border: solid 3px #000;
+    font-size: 30px;
+    color: #000000;
+    background-color: #99eaff;
+}
+
