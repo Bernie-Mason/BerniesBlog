@@ -28,5 +28,20 @@ namespace BerniesBlog.Controllers
         {
             return View();
         }
+
+        public ActionResult MVCIntro()
+        {
+            return View();
+        }
+
+        public ActionResult MVCTesting()
+        {
+            return View();
+        }
+
+        public ActionResult MVCDependencyInjection()
+        {
+            return View();
+        }
     }
 }

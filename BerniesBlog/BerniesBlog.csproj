@@ -193,7 +193,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CSharpController.cs" />
+    <Compile Include="Controllers\ProgrammingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
@@ -297,6 +297,10 @@
     <Content Include="Views\Programming\CSharpIntro.cshtml" />
     <Content Include="Views\Programming\JavaScriptIntro.cshtml" />
     <Content Include="Views\Programming\_CSharpLinks.cshtml" />
+    <Content Include="Views\Programming\MVCIntro.cshtml" />
+    <Content Include="Views\Programming\MVCTesting.cshtml" />
+    <Content Include="Views\Programming\MVCDependencyInjection.cshtml" />
+    <Content Include="Views\Programming\_MVCLinks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

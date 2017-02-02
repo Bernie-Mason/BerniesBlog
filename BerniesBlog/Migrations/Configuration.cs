@@ -23,7 +23,6 @@ namespace BerniesBlog.Migrations
             // static List<RestaurantReviews> _reviews = new List<RestaurantReviews>
 
 
-
             context.Restaurants.AddOrUpdate(r => r.Name, new Restaurant
             {
                 Name = "WokyKo", // If this already exists, AddOrUpdate does nothing, if none of the data is changed

@@ -20,6 +20,22 @@ namespace BerniesBlog.Controllers
 
             var message = String.Format("{0}::{1} {2}", controller, action, id);
             ViewBag.Message = message;
+
+            // Message to be inserted in subtitle of homepage only
+            int hour = DateTime.Now.Hour;
+            string Day = DateTime.Now.DayOfWeek.ToString();
+            string greeting;
+            if (hour < 5) { greeting = "You're up early!"; }
+            else if (hour < 12) { if (Day == "Friday") { greeting = "Happy Friday!"; } else { greeting = "Good morning!"; } }
+            else if (hour < 13) { greeting = "Happy lunchtime!"; }
+            else if (hour < 18) { if (Day == "Friday") { greeting = "Happy Friday!"; } else { greeting = "Good afternoon!"; } }
+            else if (hour < 21) { greeting = "Good evening!"; }
+            else { greeting = "Good night!"; }
+
+            ViewBag.GreetingMessage = greeting;
+            
+
+            //Return view
             return View();
         }
 
@@ -42,24 +58,6 @@ namespace BerniesBlog.Controllers
             return View();
         }
 
-        //public ActionResult Food(string searchTerm = null) // This default parameter of null is slightly redundant as by default the runtime will pass a null if nothing is found
-        //{
-        //    var model =
-        //        _db.Restaurants
-        //           .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
-        //           .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
-        //           .Select(r => new RestaurantListViewModel
-        //                   {
-        //                       Id = r.Id,
-        //                       Name = r.Name,
-        //                       City = r.City,
-        //                       Country = r.Country,
-        //                       NumberOfReviews = r.Reviews.Count()
-        //                   });
-
-        //    return View(model);
-        //}
-
         public ActionResult Magic()
         {
             return View();
@@ -75,13 +73,5 @@ namespace BerniesBlog.Controllers
             return View();
         }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (_db != null)
-        //    {
-        //        _db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
     }
 }
