@@ -43,5 +43,10 @@ namespace BerniesBlog.Controllers
         {
             return View();
         }
+
+        public ActionResult CSharpLINQLookup()
+        {
+            return View();
+        }
     }
 }

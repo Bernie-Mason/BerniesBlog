@@ -301,6 +301,7 @@
     <Content Include="Views\Programming\MVCTesting.cshtml" />
     <Content Include="Views\Programming\MVCDependencyInjection.cshtml" />
     <Content Include="Views\Programming\_MVCLinks.cshtml" />
+    <Content Include="Views\Programming\CSharpLINQLookup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
