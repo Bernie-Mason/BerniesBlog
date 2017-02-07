@@ -1,0 +1,4 @@
+Bootstrapper (object)
+Persistence??
+Persistent Data denotes information that is infrequently accessed and not likely to be modified.
+Domain entities - All MVC frameworks start with the domain model as everything revolves around it.
