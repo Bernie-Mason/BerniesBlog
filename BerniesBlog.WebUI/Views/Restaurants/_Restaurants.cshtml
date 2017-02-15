@@ -1,42 +1,21 @@
-﻿@model IEnumerable<BerniesBlog.WebUI.Models.RestaurantListViewModel>
+﻿@model BerniesBlog.WebUI.Models.RestaurantViewModel
 
-<div id="restaurantList">
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => Model.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.City)
+                    @Html.DisplayFor(modelItem => Model.City)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Country)
+                    @Html.DisplayFor(modelItem => Model.Country)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Reviews", "Index", "Reviews", new { id = item.Id }, null) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Reviews", "Index", "Reviews", new { id = Model.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
                 </td>
             </tr>
-        }
-
-    </table>
-</div>
 
 <p>
     @Html.ActionLink("Create New", "Create")

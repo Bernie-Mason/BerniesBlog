@@ -6,19 +6,19 @@ using System.Web;
 
 namespace BerniesBlog.WebUI.Models
 {
-    public class RestaurantReviews : IValidatableObject
+    public class RestaurantReviewViewModel : IValidatableObject
     {
         public int Id { get; set; }
 
-        [Range(1,10)]
+        [Range(1, 10)]
         [Required] // redundant for an int
         public int Rating { get; set; }
 
         [Required]
         [StringLength(1024)]
         public string Body { get; set; }
-       
-        [Display(Name ="User Name")]
+
+        [Display(Name = "User Name")]
         [DisplayFormat(NullDisplayText = "anonymous")]
         public string ReviewerName { get; set; }
 

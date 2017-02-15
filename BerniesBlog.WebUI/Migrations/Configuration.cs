@@ -1,5 +1,6 @@
 namespace BerniesBlog.WebUI.Migrations
 {
+    using Domain.Entities;
     using Models;
     using System;
     using System.Collections.Generic;
@@ -7,16 +8,16 @@ namespace BerniesBlog.WebUI.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BerniesBlog.WebUI.Models.RestaurantReviewsDB>
+    internal sealed class Configuration : DbMigrationsConfiguration<BerniesBlog.Domain.Concrete.RestaurantReviewsDB>
     {
         // This class is about controlling migrations: how you want it to perform and when you want it to run.
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "BerniesBlog.Models.RestaurantReviewsDB";
+            ContextKey = "BerniesBlog.Domain.Concrete.RestaurantReviewsDB";
         }
 
-        protected override void Seed(BerniesBlog.WebUI.Models.RestaurantReviewsDB context)
+        protected override void Seed(BerniesBlog.Domain.Concrete.RestaurantReviewsDB context)
         {
             // Basically where you can tell the entity framework to populate the database with some initial data
             // Every time it goes to update the database it's going  to invoke this seed method
@@ -27,7 +28,7 @@ namespace BerniesBlog.WebUI.Migrations
             {
                 Name = "WokyKo", // If this already exists, AddOrUpdate does nothing, if none of the data is changed
                 City = "Bristol",
-                Country = "UK",
+                Country = "United Kingdom",
                 Reviews = new List<RestaurantReviews>
                 {
                     new RestaurantReviews {
@@ -66,7 +67,19 @@ namespace BerniesBlog.WebUI.Migrations
                     new RestaurantReviews {
                 Rating = 9, Body="The greatest goulash"}
                 }
-             });
+             },
+
+            new Restaurant
+            {
+                Name = "Manna",
+                City = "Bristol",
+                Country = "United Kingdom",
+                Reviews = new List<RestaurantReviews>
+                {
+                    new RestaurantReviews {
+                Rating = 9, Body="Top tapas"}
+                }
+            });
 
             for (int i = 0; i < 1000; i++)
             {

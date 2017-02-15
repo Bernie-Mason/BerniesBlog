@@ -15,3 +15,4 @@ Steps in creating the SportsStore MVC application (or any MVC app)
   c. Add a DbContext class to a new folder named Concrete in the Domain
   d. To the Web.config file add: <add name="EFDbContext" connectionString="Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=SportsStore;Integrated Security=True" providerName="System.Data.SqlClient" />
 7. Now add a repository class that inherits from IProductRepository named EFProductRepository and bind it to our Ninject infrastructure.
+8.

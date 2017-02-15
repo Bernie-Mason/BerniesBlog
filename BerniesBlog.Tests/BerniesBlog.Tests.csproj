@@ -121,6 +121,10 @@
       <Project>{3196d666-85a8-4aa9-b251-3ccabf82df28}</Project>
       <Name>BerniesBlog.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BerniesBlog.WebUI\BerniesBlog.WebUI.csproj">
+      <Project>{d1d4c5c1-05ba-494b-81e6-d6f175cb4e73}</Project>
+      <Name>BerniesBlog.WebUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

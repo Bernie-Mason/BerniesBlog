@@ -7,39 +7,38 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BerniesBlog.WebUI.Models;
+using BerniesBlog.Domain.Abstract;
+using BerniesBlog.Domain.Entities;
+using BerniesBlog.Domain.Concrete;
 
 namespace BerniesBlog.WebUI.Controllers
 {
     public class RestaurantsController : Controller
     {
-        private RestaurantReviewsDB db = new RestaurantReviewsDB();
+        private IRestaurantRepository repository;
+        public int PageSize = 4;
+
+        public RestaurantsController(IRestaurantRepository repositoryParam)
+        {
+            repository = repositoryParam;
+        }
 
         // GET: Restaurants
-        public ActionResult Index(string searchTerm = null)
+        public ActionResult Index(string searchTerm = null, int page = 1)
         {
-            //var model = from r in db.Restaurants
-            //            orderby r.Reviews.Average(review => review.Rating) descending
-            //            select new RestaurantListViewModel
-            //            {
-            //                Id = r.Id,
-            //                Name = r.Name,
-            //                City = r.City,
-            //                Country = r.Country,
-            //                NumberOfReviews = r.Reviews.Count()
-            //            };
-
-            var model = db.Restaurants
-                            .OrderByDescending(r => r.Reviews.Average(reviews => reviews.Rating))
-                            .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
-                            .Select(r => new RestaurantListViewModel
-                            {
-                                Id = r.Id,
-                                Name = r.Name,
-                                City = r.City,
-                                Country = r.Country,
-                                NumberOfReviews = r.Reviews.Count()
-                            });
-
+            RestaurantListViewModel model = new RestaurantListViewModel()
+            {
+                Restaurants = repository.Restaurants
+                    .OrderByDescending(r => r.Reviews.Average(reviews => reviews.Rating))
+                    .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm)),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = repository.Restaurants.Count()
+                }
+            };
+            
             return View(model);
         }
 
@@ -50,7 +49,7 @@ namespace BerniesBlog.WebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurant restaurant = db.Restaurants.Find(id);
+            Restaurant restaurant = repository.Restaurants.Find(id);
             if (restaurant == null)
             {
                 return HttpNotFound();
@@ -73,8 +72,8 @@ namespace BerniesBlog.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Restaurants.Add(restaurant);
-                db.SaveChanges();
+                repository.Restaurants.Add(restaurant);
+                repository.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -88,12 +87,20 @@ namespace BerniesBlog.WebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurant restaurant = db.Restaurants.Find(id);
+            Restaurant restaurant = repository.Restaurants.Find(id);
             if (restaurant == null)
             {
                 return HttpNotFound();
             }
-            return View(restaurant);
+            RestaurantViewModel restaurantIn = new RestaurantViewModel
+            {
+                Id = restaurant.Id,
+                Name = restaurant.Name,
+                City = restaurant.City,
+                Country = restaurant.Country,
+            };
+
+            return View(restaurantIn);
         }
 
         // POST: Restaurants/Edit/5
@@ -101,14 +108,21 @@ namespace BerniesBlog.WebUI.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,City,Country")] Restaurant restaurant)
+        public ActionResult Edit([Bind(Include = "Id,Name,City,Country")] IRestaurantRepository restaurant)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(restaurant).State = EntityState.Modified;
-                db.SaveChanges();
+                repository.Entry(restaurant).State = EntityState.Modified;
+                repository.SaveChanges();
                 return RedirectToAction("Index");
             }
+            //RestaurantViewModel restaurantIn = new RestaurantViewModel
+            //{
+            //    Id = restaurant.Id,
+            //    Name = restaurant.Name,
+            //    City = restaurant.City,
+            //    Country = restaurant.Country,
+            //};
             return View(restaurant);
         }
 
@@ -119,12 +133,19 @@ namespace BerniesBlog.WebUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurant restaurant = db.Restaurants.Find(id);
+            Restaurant restaurant = repository.Restaurants.Find(id);
             if (restaurant == null)
             {
                 return HttpNotFound();
             }
-            return View(restaurant);
+            RestaurantViewModel restaurantIn = new RestaurantViewModel
+            {
+                Id = restaurant.Id,
+                Name = restaurant.Name,
+                City = restaurant.City,
+                Country = restaurant.Country,
+            };
+            return View(restaurantIn);
         }
 
         // POST: Restaurants/Delete/5
@@ -132,9 +153,9 @@ namespace BerniesBlog.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Restaurant restaurant = db.Restaurants.Find(id);
-            db.Restaurants.Remove(restaurant);
-            db.SaveChanges();
+            Restaurant restaurant = repository.Restaurants.Find(id);
+            repository.Restaurants.Remove(restaurant);
+            repository.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -142,10 +163,11 @@ namespace BerniesBlog.WebUI.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                repository.Dispose();
             }
             base.Dispose(disposing);
         }
+
     }
 }
 

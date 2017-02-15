@@ -1,4 +1,10 @@
 Bootstrapper (object)
-Persistence??
+Persistence: In computer science, persistence describes dat that outlives the process that created it.
 Persistent Data denotes information that is infrequently accessed and not likely to be modified.
 Domain entities - All MVC frameworks start with the domain model as everything revolves around it.
+ORM Framework:  Objects to Relational tables Mapping. Presents the tables, columns and rows of a relational database through regular C# objects.
+    - LINQ can work with different sources of data, and one of these is Entity Framework.
+View model: Not a part of the domain model. It is just a convenient class for passing data between the controller and the view.
+
+
+Routing scheme: The ASP.NET routing system is used by MVC to handle incoming requests from clietns, but it also generates outgoing URLs that conform to the URL scheme and that can be embedded in Web pages. By using the routing system to handle incoming requests and generate outgoing URLs, we can ensure that all the URLs in the application are consistent.

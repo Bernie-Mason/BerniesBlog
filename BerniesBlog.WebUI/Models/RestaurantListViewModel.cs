@@ -5,13 +5,14 @@ using System.Web;
 
 namespace BerniesBlog.WebUI.Models
 {
-    public class RestaurantListViewModel
+    public class RestaurantListViewModel : RestaurantViewModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
-        public int NumberOfReviews { get; set; }
-        
+        public List<RestaurantViewModel> Restaurants { get; set; }
+        public PagingInfo PagingInfo { get; set; }
+        public string CurrentCatagory { get; set; }
+       
+
     }
+
+
 }

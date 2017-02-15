@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BerniesBlog;
-using BerniesBlog.Controllers;
+using BerniesBlog.WebUI;
+using BerniesBlog.WebUI.Controllers;
 
 namespace BerniesBlog.Tests.Controllers
 {

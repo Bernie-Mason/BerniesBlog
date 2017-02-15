@@ -77,8 +77,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\Interface1.cs" />
     <Compile Include="Abstract\IRestaurantRepository.cs" />
     <Compile Include="Concrete\RestaurantReviewsDB.cs" />
+    <Compile Include="Concrete\RestaurantsRepository.cs" />
     <Compile Include="Entities\Restaurant.cs" />
     <Compile Include="Entities\RestaurantReviews.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
