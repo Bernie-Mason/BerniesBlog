@@ -1,9 +1,10 @@
-﻿using BerniesBlog.Domain.Abstract;
-using BerniesBlog.Domain.Concrete;
+﻿
 using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using BerniesBlog.Domain.Concrete;
+using BerniesBlog.Domain.Abstract;
 
 namespace BerniesBlog.WebUI.Infrastructure
 {
@@ -19,8 +20,7 @@ namespace BerniesBlog.WebUI.Infrastructure
 
         private void AddBindings()
         {
-            kernel.Bind<IRestaurantRepository>().To<RestaurantReviewsDB>();
-            //kernel.Bind<IRestaurantRepository2>().To<RestaurantsRepository>();
+            kernel.Bind<IBlogPost>().To<BlogPostRepo>();
         }
 
         public object GetService(Type serviceType)

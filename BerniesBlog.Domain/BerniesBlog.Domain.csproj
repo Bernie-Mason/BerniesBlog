@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -77,12 +78,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\Interface1.cs" />
-    <Compile Include="Abstract\IRestaurantRepository.cs" />
-    <Compile Include="Concrete\RestaurantReviewsDB.cs" />
-    <Compile Include="Concrete\RestaurantsRepository.cs" />
-    <Compile Include="Entities\Restaurant.cs" />
-    <Compile Include="Entities\RestaurantReviews.cs" />
+    <Compile Include="Abstract\IBlogPost.cs" />
+    <Compile Include="Concrete\BlogPostRepo.cs" />
+    <Compile Include="Concrete\DbContext.cs" />
+    <Compile Include="Entities\BlogPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

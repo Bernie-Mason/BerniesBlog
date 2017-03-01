@@ -4,23 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BerniesBlog.Domain.Abstract;
 
 namespace BerniesBlog.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-
-        public ActionResult Index()
+        private IBlogPost blogPostRepo;
+        public int PageSize = 4;
+        public HomeController(IBlogPost paramBlogPost)
         {
-            // The information of the route data is available anywhere throughout the request!
-            // The RouteData is a data structure that is used to contain the route data
-            var controller = RouteData.Values["controller"];
-            var action = RouteData.Values["action"];
-            var id = RouteData.Values["id"]; // We don't actually have to look inside route data to get the id
+            blogPostRepo = paramBlogPost;
+        }
 
-            var message = String.Format("{0}::{1} {2}", controller, action, id);
-            ViewBag.Message = message;
-
+        public ActionResult Index(int page = 1)
+        {
             // Message to be inserted in subtitle of homepage only
             int hour = DateTime.Now.Hour;
             string Day = DateTime.Now.DayOfWeek.ToString();
@@ -33,15 +31,32 @@ namespace BerniesBlog.WebUI.Controllers
             else { greeting = "Good night!"; }
 
             ViewBag.GreetingMessage = greeting;
-            
+            BlogPostViewModel model = new BlogPostViewModel
+            {
+                BlogPosts = blogPostRepo.blogPosts
+                .OrderBy(b => b.Id)
+                .Skip((page-1)*PageSize)
+                .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    ItemsPerPage = PageSize,
+                    CurrentPage = page,
+                    TotalItems = blogPostRepo.blogPosts.Count()
+                }
+            };
 
             //Return view
-            return View();
+            return View(model);
         }
 
-        public ActionResult Post()
+        public ActionResult Post(string Name)
         {
-            return View();
+            if (Name != null)
+            {
+                ViewBag.FileName = Name;
+                return View();
+            }
+            return RedirectToAction("Index");
         }
 
         public ActionResult About()
@@ -53,18 +68,8 @@ namespace BerniesBlog.WebUI.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contact page.";
 
-            return View();
-        }
-
-        public ActionResult Magic()
-        {
-            return View();
-        }
-
-        public ActionResult Languages()
-        {
             return View();
         }
 

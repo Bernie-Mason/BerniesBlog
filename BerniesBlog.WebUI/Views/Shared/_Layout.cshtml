@@ -54,12 +54,14 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="~/Home">Blog Home</a>
-                @*TODO: Convert the above to an actionlink <a class="navbar-brand">@Html.ActionLink("Bernie's Blog", "Index", "Home")</a>*@
+                @Html.ActionLink("Home", "Index", "Home", null, new {@class = "navbar-brand"})
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink("Programming", "Index", "Programming")
+                    </li>
                     <li>
                         @Html.ActionLink("About", "About", "Home")
                     </li>
@@ -69,24 +71,7 @@
                     <li>
                         @Html.ActionLink("Contact", "Contact", "Home")
                     </li>
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        @Html.ActionLink("Programming", "Index", "Programming")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Restaurants", "Index", "Restaurants")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Magic", "Magic", "Home")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Languages", "Languages", "Home")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Running", "Running", "Home")
-                    </li>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

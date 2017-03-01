@@ -16,10 +16,10 @@ namespace BerniesBlog.WebUI
             // For example, we can request an image or css file without needing a routing engine for it.
 
             routes.MapRoute(
-                name: "Post",
-                url: "Post/{name}",
-                defaults: new { controller = "Post", action = "Search", name = UrlParameter.Optional }
-                );
+                "Post",
+                "{controller}/Post/{Name}",
+                new {controller = "Home", action = "Post", Name = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "Default",

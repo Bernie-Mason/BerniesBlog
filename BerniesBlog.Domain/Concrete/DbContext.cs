@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BerniesBlog.Domain.Entities;
 
-namespace BerniesBlog.Domain.Abstract
+namespace BerniesBlog.Domain.Concrete
 {
-    public interface IRestaurantRepository2
+    public class BlogPostDBContext : DbContext
     {
-        IEnumerable<Restaurant> Restaurants { get; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
+
     }
 }

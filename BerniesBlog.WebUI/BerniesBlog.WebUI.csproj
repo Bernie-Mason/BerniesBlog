@@ -218,11 +218,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
+    <Compile Include="Areas\Blog\Controllers\PostController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProgrammingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PostController.cs" />
-    <Compile Include="Controllers\RestaurantsController.cs" />
-    <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Filters\LogAttribute.cs" />
     <Compile Include="Filters\MyPropertyActionFilter..cs" />
     <Compile Include="Global.asax.cs">
@@ -230,16 +230,9 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Migrations\201701251658402_InitialCreate.cs" />
-    <Compile Include="Migrations\201701251658402_InitialCreate.Designer.cs">
-      <DependentUpon>201701251658402_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BlogPost.cs" />
+    <Compile Include="Models\BlogPostViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
-    <Compile Include="Models\RestaurantListViewModel.cs" />
-    <Compile Include="Models\RestaurantReviewViewModel.cs" />
-    <Compile Include="Models\RestaurantViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -273,6 +266,11 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Blog\Views\web.config" />
+    <Content Include="Areas\Blog\Views\Post\firstBlogPost.cshtml" />
+    <Content Include="Areas\Blog\Views\Archive\firstBlogPost.cshtml" />
+    <Content Include="Content\Archive\firstBlogPost.cshtml" />
+    <Content Include="Content\Archive\nullBlogPost.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\clean-blog.js" />
     <Content Include="Scripts\clean-blog.min.js" />
@@ -290,7 +288,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -306,19 +306,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Post.cshtml" />
     <Content Include="Views\Home\Running.cshtml" />
-    <Content Include="Views\Home\Languages.cshtml" />
-    <Content Include="Views\Home\Magic.cshtml" />
-    <Content Include="Views\Home\Food.cshtml" />
-    <Content Include="Views\Shared\_Review.cshtml" />
-    <Content Include="Views\Restaurants\Create.cshtml" />
-    <Content Include="Views\Restaurants\Delete.cshtml" />
-    <Content Include="Views\Restaurants\Edit.cshtml" />
-    <Content Include="Views\Restaurants\Index.cshtml" />
-    <Content Include="Views\Reviews\Index.cshtml" />
-    <Content Include="Views\Reviews\_Reviews.cshtml" />
-    <Content Include="Views\Reviews\Create.cshtml" />
-    <Content Include="Views\Reviews\Edit.cshtml" />
-    <Content Include="Views\Restaurants\_Restaurants.cshtml" />
     <Content Include="Views\Programming\Index.cshtml" />
     <Content Include="Views\Programming\ObjectOriented.cshtml" />
     <Content Include="Views\Programming\CSharpIntro.cshtml" />
@@ -332,6 +319,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Blog\Models\" />
+    <Folder Include="Areas\Blog\Views\Shared\" />
     <Folder Include="less\" />
     <Folder Include="scss\" />
     <Folder Include="Views\Post\" />
@@ -345,11 +334,6 @@
     </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701251658402_InitialCreate.resx">
-      <DependentUpon>201701251658402_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BerniesBlog.Domain\BerniesBlog.Domain.csproj">
