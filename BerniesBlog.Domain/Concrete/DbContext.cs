@@ -11,6 +11,12 @@ namespace BerniesBlog.Domain.Concrete
     public class BlogPostDBContext : DbContext
     {
         public DbSet<BlogPost> BlogPosts { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            // other code 
+            Database.SetInitializer<BlogPostDBContext>(null);
+            // more code
+        }
 
     }
 }

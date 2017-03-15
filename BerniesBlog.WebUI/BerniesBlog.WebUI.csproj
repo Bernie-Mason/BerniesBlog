@@ -220,8 +220,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
     <Compile Include="Areas\Blog\Controllers\PostController.cs" />
-    <Compile Include="Controllers\PostController.cs" />
-    <Compile Include="Controllers\ProgrammingController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\LogAttribute.cs" />
     <Compile Include="Filters\MyPropertyActionFilter..cs" />
@@ -230,8 +229,8 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Models\BlogPost.cs" />
     <Compile Include="Models\BlogPostViewModel.cs" />
+    <Compile Include="Models\BlogPostListViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -269,8 +268,6 @@
     <Content Include="Areas\Blog\Views\web.config" />
     <Content Include="Areas\Blog\Views\Post\firstBlogPost.cshtml" />
     <Content Include="Areas\Blog\Views\Archive\firstBlogPost.cshtml" />
-    <Content Include="Content\Archive\firstBlogPost.cshtml" />
-    <Content Include="Content\Archive\nullBlogPost.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\clean-blog.js" />
     <Content Include="Scripts\clean-blog.min.js" />
@@ -305,7 +302,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Post.cshtml" />
-    <Content Include="Views\Home\Running.cshtml" />
     <Content Include="Views\Programming\Index.cshtml" />
     <Content Include="Views\Programming\ObjectOriented.cshtml" />
     <Content Include="Views\Programming\CSharpIntro.cshtml" />
@@ -316,6 +312,24 @@
     <Content Include="Views\Programming\MVCDependencyInjection.cshtml" />
     <Content Include="Views\Programming\_MVCLinks.cshtml" />
     <Content Include="Views\Programming\CSharpLINQLookup.cshtml" />
+    <Content Include="Views\Archive\firstBlogPost.cshtml" />
+    <Content Include="Views\Archive\mvcIntro.cshtml" />
+    <Content Include="Views\Archive\nullBlogPost.cshtml" />
+    <Content Include="Views\Archive\NotForPosting\_CSharpLinks.cshtml" />
+    <Content Include="Views\Archive\NotForPosting\_MVCLinks.cshtml" />
+    <Content Include="Views\Archive\Programming\CSharpIntro.cshtml" />
+    <Content Include="Views\Archive\NotForPosting\CSharpLINQLookup.cshtml" />
+    <Content Include="Views\Archive\NotForPosting\Index.cshtml" />
+    <Content Include="Views\Archive\NotForPosting\JavaScriptIntro.cshtml" />
+    <Content Include="Views\Archive\Programming\MVCDependencyInjection.cshtml" />
+    <Content Include="Views\Archive\Programming\MVCIntro.cshtml" />
+    <Content Include="Views\Archive\Programming\MVCTesting.cshtml" />
+    <Content Include="Views\Archive\Programming\ObjectOriented.cshtml" />
+    <Content Include="Views\Archive\Programming\controllersInMVC.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -323,7 +337,6 @@
     <Folder Include="Areas\Blog\Views\Shared\" />
     <Folder Include="less\" />
     <Folder Include="scss\" />
-    <Folder Include="Views\Post\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

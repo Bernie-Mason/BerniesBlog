@@ -82,9 +82,18 @@
     <Compile Include="Concrete\BlogPostRepo.cs" />
     <Compile Include="Concrete\DbContext.cs" />
     <Compile Include="Entities\BlogPost.cs" />
+    <Compile Include="Migrations\201702281514596_InitialCreate.cs" />
+    <Compile Include="Migrations\201702281514596_InitialCreate.Designer.cs">
+      <DependentUpon>201702281514596_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702281514596_InitialCreate.resx">
+      <DependentUpon>201702281514596_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config">

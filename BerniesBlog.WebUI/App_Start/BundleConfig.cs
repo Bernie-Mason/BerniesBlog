@@ -12,8 +12,9 @@ namespace BerniesBlog.WebUI
             bundles.Add(new ScriptBundle("~/bundles/jqueryBerniesBlog").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.ui.js*",
-                        
-                        "~/Scripts/jquery.validate.js*", "~/Scripts/berniesblog.js*"
+                        "~/Scripts/jquery.validate.js*",
+                        "~/Scripts/jquery.validate.unobstrusive.js*",
+                        "~/Scripts/berniesblog.js*"
                         ));
 
             // OLD PREDEFINED BUNDLES:

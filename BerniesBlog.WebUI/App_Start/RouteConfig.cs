@@ -11,14 +11,31 @@ namespace BerniesBlog.WebUI
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}"); 
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             // Above: The routing engine will not try to process a request that will reach a real file on the file system
             // For example, we can request an image or css file without needing a routing engine for it.
 
             routes.MapRoute(
+                null,
+                "",
+                new { controller = "Home", action = "Index", page = 1 });
+
+            routes.MapRoute(
+                null,
+                url: "Page{page}",
+                defaults: new { controller = "Home", action = "Index", page = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                "PostTwo",
+                "Post/{FolderName}/{Name}",
+                new {controller = "Home", action = "Post"/*, Name = UrlParameter.Optional, FolderName = UrlParameter.Optional*/ }
+            );
+
+            routes.MapRoute(
                 "Post",
-                "{controller}/Post/{Name}",
-                new {controller = "Home", action = "Post", Name = UrlParameter.Optional }
+                "Post/{Name}",
+                new { controller = "Home", action = "Post"/*, Name = UrlParameter.Optional*/ }
             );
 
             routes.MapRoute(

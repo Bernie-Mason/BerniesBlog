@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BerniesBlog.WebUI.Models.BlogPostViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Admin: All Post Create Update Delete</h2>
+
+<p>
+    @Html.ActionLink("Add a new post", "Create", null, new {@class = "btn btn-default"})
+</p>
+<table class="table table-striped table-condensed table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FolderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDateTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Name, "Edit", new { id = item.Id }) 
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FolderName)
+        </td>
+        <td>
+            @Html.ActionLink(item.PostTitle, "Edit", new { id = item.Id }) 
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDateTime)
+        </td>
+        <td>
+            
+            @using (Html.BeginForm("Delete", "Admin"))
+            {
+                @Html.Hidden("Id", item.Id)
+                <input type="submit"
+                       class="btn btn-default btn-xs"
+                       value="Delete"/>
+            }
+        </td>
+    </tr>
+}
+
+</table>

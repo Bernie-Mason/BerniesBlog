@@ -11,13 +11,14 @@ namespace BerniesBlog.WebUI.Controllers
     public class HomeController : Controller
     {
         private IBlogPost blogPostRepo;
-        public int PageSize = 4;
+        public bool selectPostsBasedOnPaging = true;
+        public int PageSize = 5;
         public HomeController(IBlogPost paramBlogPost)
         {
             blogPostRepo = paramBlogPost;
         }
 
-        public ActionResult Index(int page = 1)
+        public ViewResult Index(int page = 1)
         {
             // Message to be inserted in subtitle of homepage only
             int hour = DateTime.Now.Hour;
@@ -31,33 +32,73 @@ namespace BerniesBlog.WebUI.Controllers
             else { greeting = "Good night!"; }
 
             ViewBag.GreetingMessage = greeting;
-            BlogPostViewModel model = new BlogPostViewModel
+
+            BlogPostListViewModel model = new BlogPostListViewModel();
+            model.PagingInfo.CurrentPage = page;
+            model.PagingInfo.ItemsPerPage = PageSize;
+            model.PagingInfo.TotalItems = blogPostRepo.blogPosts.Count();
+            model.SetBlogPosts(blogPostRepo, selectPostsBasedOnPaging); // The BlogPosts in BlogPostListViewModel to the posts in the repo
+
+            BlogPostListViewModel selectedModel = new BlogPostListViewModel
             {
-                BlogPosts = blogPostRepo.blogPosts
+                BlogPosts = model.BlogPosts
                 .OrderBy(b => b.Id)
-                .Skip((page-1)*PageSize)
-                .Take(PageSize),
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize)
+                .ToList(),
+
                 PagingInfo = new PagingInfo
                 {
-                    ItemsPerPage = PageSize,
                     CurrentPage = page,
+                    ItemsPerPage = PageSize,
                     TotalItems = blogPostRepo.blogPosts.Count()
                 }
             };
 
-            //Return view
             return View(model);
         }
 
-        public ActionResult Post(string Name)
+        public ActionResult Post(string Name, string FolderName, string Title)
         {
-            if (Name != null)
+            if (!string.IsNullOrWhiteSpace(Name))
             {
-                ViewBag.FileName = Name;
+                ViewBag.BlogTitle = Title;
+            }
+
+            if (!string.IsNullOrWhiteSpace(Name))
+            {
+                if (!string.IsNullOrWhiteSpace(FolderName))
+                {
+                    ViewBag.RelPathName = "/Views/Archive/" + FolderName + "/" + Name + ".cshtml";
+                    return View();
+                }
+                ViewBag.RelPathName = "/Views/Archive/" + Name + ".cshtml";
                 return View();
             }
             return RedirectToAction("Index");
         }
+
+        //public RedirectToRouteResult RandomPost()
+        //{
+        //    Random rnd = new Random();
+        //    int postIndex = rnd.Next(0, (blogPostRepo.blogPosts.Count()-1));
+        //    BlogPostListViewModel model = new BlogPostListViewModel();
+        //    model.SetBlogPosts(blogPostRepo, selectPostsBasedOnPaging); // The BlogPosts in BlogPostListViewModel to the posts in the repo
+        //    List<BlogPostViewModel> modelList = model.BlogPosts;
+        //    BlogPostViewModel asdf = from BlogPostViewModel in modelList
+        //                             where 
+
+        //    BlogPostListViewModel selectedModel = new BlogPostListViewModel
+        //    {
+        //        BlogPosts = model.BlogPosts
+        //        .OrderBy(b => b.Id)
+        //        .Skip(postIndex)
+        //        .Take(1)
+        //        .ToList(),
+        //    };
+
+        //    return RedirectToAction("Post", new { selectedModel, FolderName, Title } );
+        //}
 
         public ActionResult About()
         {
@@ -73,10 +114,6 @@ namespace BerniesBlog.WebUI.Controllers
             return View();
         }
 
-        public ActionResult Running()
-        {
-            return View();
-        }
 
     }
 }

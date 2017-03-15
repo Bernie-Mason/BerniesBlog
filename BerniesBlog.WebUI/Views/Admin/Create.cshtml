@@ -1,0 +1,40 @@
+﻿@model BerniesBlog.WebUI.Models.BlogPostViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create a new post</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="panel-body">
+        @foreach (var property in ViewData.ModelMetadata.Properties)
+        {
+            
+            if (property.PropertyName == "Description")
+            {
+                @Html.DisplayName(property.PropertyName)
+                @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+            }
+            else if (property.PropertyName == "CreationDateTime")
+            {
+                @Html.DisplayName(property.PropertyName)
+                Model.CreationDateTime = DateTime.Now;
+                @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+            }
+            else if (property.PropertyName != "Id")
+            {
+                @Html.DisplayName(property.PropertyName)
+                @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+            }
+            @Html.ValidationMessage(property.PropertyName)
+        }
+    </div>
+    <div class="panel-footer">
+        <input type="submit" value="Save" class="btn btn-primary"/>
+        @Html.ActionLink("Cancel and return to list", "Index", null, new {@class = "btn btn-default"})
+    </div>
+}
+

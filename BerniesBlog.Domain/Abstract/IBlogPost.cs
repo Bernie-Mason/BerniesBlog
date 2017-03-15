@@ -10,5 +10,7 @@ namespace BerniesBlog.Domain.Abstract
     public interface IBlogPost
     {
         IEnumerable<BlogPost> blogPosts { get; }
+        void SavePost(BlogPost post);
+        BlogPost DeleteBlogPost(int Id);
     }
 }

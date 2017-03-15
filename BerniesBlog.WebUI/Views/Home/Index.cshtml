@@ -1,5 +1,5 @@
 ﻿
-@model BerniesBlog.WebUI.Models.BlogPostViewModel
+@model BerniesBlog.WebUI.Models.BlogPostListViewModel
 
 @{
     ViewBag.DefaultPageSubHeader = ViewBag.GreetingMessage;
@@ -13,9 +13,12 @@
     <div class="post-preview">
 
         <h2>
-            @Html.ActionLink(b.Title, "Post", "Home", new { Name = b.Name}, new { @class = "post-title" })
+            @Html.ActionLink(b.PostTitle, "Post", "Home", new { Name = b.Name, FolderName = b.FolderName}, new { @class = "post-title" })
+            @{
+                ViewBag.BlogTitle = b.PostTitle;
+            }
         </h2>
-        <h3 class="post-subtitle">
+        <h3 class="post-subtitle" style ="font-weight: 500;">
             @b.Description
         </h3>
         <p class="post-meta">Posted by Bernie on @b.CreationDateTime</p>
@@ -23,8 +26,6 @@
 }
 
 
-<ul class="pager">
-    <li class="next">
-        <a href="#">Older Posts &rarr;</a>
-    </li>
-</ul>
+<div class="btn-group">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new {page = x}))
+</div>

@@ -13,8 +13,10 @@ namespace BerniesBlog.Domain.Entities
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Title { get; set; }
+        public string FolderName { get; set; }
+        public string PostTitle { get; set; }
         public string Description { get; set; }
         public DateTime CreationDateTime { get; set; }
+        
     }
 }

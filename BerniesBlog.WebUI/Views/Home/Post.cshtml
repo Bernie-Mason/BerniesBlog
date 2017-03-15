@@ -1,6 +1,16 @@
-﻿
+﻿@model BerniesBlog.WebUI.Models.BlogPostListViewModel
+
 @{
-    ViewBag.DefaultPageSubHeader = "Beginnings";
+    if (!string.IsNullOrWhiteSpace(ViewBag.BlogTitle))
+    {
+        ViewBag.DefaultPageSubHeader = ViewBag.DefaultPageHeader;
+        ViewBag.DefaultPageHeader = ViewBag.BlogTitle;
+    }
+
 }
 
-@RenderPage("~/Content/Archive/" + ViewBag.FileName + ".cshtml")
+@{
+    string fullInputPath = ViewBag.RelPathName;
+    Html.RenderPartial(fullInputPath);
+}
+
