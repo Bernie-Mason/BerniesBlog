@@ -13,8 +13,8 @@ namespace BerniesBlog.WebUI
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.ui.js*",
                         "~/Scripts/jquery.validate.js*",
-                        "~/Scripts/jquery.validate.unobstrusive.js*",
-                        "~/Scripts/berniesblog.js*"
+                        "~/Scripts/jquery.validate.unobstrusive.js*"
+                        
                         ));
 
             // OLD PREDEFINED BUNDLES:
@@ -32,10 +32,17 @@ namespace BerniesBlog.WebUI
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/jqBootstrapValidation.js",
                       "~/Scripts/respond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/otherJs").Include(
+                      "~/Scripts/contact_me.js",
+                      "~/Scripts/clean-blog.min.js",
+                      "~/Scripts/berniesblog.js*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-theme.css",
                       "~/Content/Site.css",
                       "~/Content/clean-blog.css",
                       "~/Content/font-awesome.css"

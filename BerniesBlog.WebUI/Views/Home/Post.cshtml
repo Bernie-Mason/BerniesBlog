@@ -13,4 +13,6 @@
     string fullInputPath = ViewBag.RelPathName;
     Html.RenderPartial(fullInputPath);
 }
-
+<div class="text-center" style="margin: 20px 15px;">
+    @Html.ActionLink("Return Home", "Index", "Home", null, new { @class = "btn  btn-link btn-default" })
+</div>

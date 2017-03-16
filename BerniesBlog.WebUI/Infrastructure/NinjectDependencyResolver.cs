@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using BerniesBlog.Domain.Concrete;
 using BerniesBlog.Domain.Abstract;
+using BerniesBlog.WebUI.Infrastructure.Abstract;
+using BerniesBlog.WebUI.Infrastructure.Concrete;
 
 namespace BerniesBlog.WebUI.Infrastructure
 {
@@ -21,6 +23,7 @@ namespace BerniesBlog.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IBlogPost>().To<BlogPostRepo>();
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
 
         public object GetService(Type serviceType)

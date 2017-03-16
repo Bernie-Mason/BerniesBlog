@@ -10,10 +10,11 @@ using BerniesBlog.WebUI.Models;
 
 namespace BerniesBlog.WebUI.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IBlogPost blogPostRepo;
-        // GET: Admin
+
         public AdminController(IBlogPost repo)
         {
             blogPostRepo = repo;

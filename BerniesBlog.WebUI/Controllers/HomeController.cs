@@ -39,22 +39,6 @@ namespace BerniesBlog.WebUI.Controllers
             model.PagingInfo.TotalItems = blogPostRepo.blogPosts.Count();
             model.SetBlogPosts(blogPostRepo, selectPostsBasedOnPaging); // The BlogPosts in BlogPostListViewModel to the posts in the repo
 
-            BlogPostListViewModel selectedModel = new BlogPostListViewModel
-            {
-                BlogPosts = model.BlogPosts
-                .OrderBy(b => b.Id)
-                .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToList(),
-
-                PagingInfo = new PagingInfo
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = PageSize,
-                    TotalItems = blogPostRepo.blogPosts.Count()
-                }
-            };
-
             return View(model);
         }
 

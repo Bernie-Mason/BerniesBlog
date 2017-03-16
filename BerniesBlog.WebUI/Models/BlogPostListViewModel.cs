@@ -37,7 +37,7 @@ namespace BerniesBlog.WebUI.Models
             if (selectPostsBasedOnPaging && PagingInfo != null)
             {
                 List<BlogPostViewModel> tempBlogList = BlogPosts
-                    .OrderBy(b => b.Id)
+                    .OrderByDescending(b => b.CreationDateTime)
                     .Skip((PagingInfo.CurrentPage - 1) * PagingInfo.ItemsPerPage)
                     .Take(PagingInfo.ItemsPerPage)
                     .ToList();
