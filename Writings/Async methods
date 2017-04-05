@@ -1,3 +1,0 @@
-Asynchronous methods:
-Asynchronous methods work in the background and inform you when they have completed, allowing your code perform other tasks. They are very useful way of removing bottlenecks form code and allowing applications to take advantage of multiple processors and processor cores.
-Async code is often verbose and devs not familiar with parallel programming may struggle with the syntax.
